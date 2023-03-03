@@ -10,11 +10,11 @@ const {swaggerDoc :V1swaggerDoc}=require('./src/docs/swagger')
 app.use(cors())
 app.use(express.json())
 //para que en las pruebas con postman no me salga error 500
-// V1swaggerDoc(app,PORT);
-// app.use("/Api/v1", todoRoutes );
+//V1swaggerDoc(app,PORT);
+app.use("/Api/v1", todoRoutes );
 
 //middleware (prefijo)api va a ser la base de todas mis rutas
-// app.use('./src/V1/routes/user.js', userRoute); por configgggg
+ app.use('./src/V1/routes/user.js', userRoute); 
 
 dbConnect();
 
