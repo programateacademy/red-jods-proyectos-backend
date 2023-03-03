@@ -5,6 +5,7 @@ const userModel = require('../models/user')
 //TODO: Login!
 const loginCtrl = async (req, res) => {
     try {
+      
         const {name, password} = req.body
         const user = await userModel.findOne({ name })
 
@@ -50,11 +51,14 @@ const loginCtrl = async (req, res) => {
 const registerCtrl = async (req, res) => {
     try {
         //TODO: Datos que envias desde el front (postman)
-        const { password, name,  } = req.body
+        const {name, email, password, phone, state } = req.body
 
         const passwordHash = await encrypt(password) //TODO: (123456)<--- Encriptando!!
         const registerUser = await userModel.create({
             name,
+            email,
+            phone,
+            state,
             password: passwordHash
         })
 
