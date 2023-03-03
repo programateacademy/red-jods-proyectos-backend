@@ -12,8 +12,7 @@ fs.readdirSync(pathRouter).filter((file) => {
     const fileWithOutExt = removeExtension(file)
     const skip = ['index'].includes(fileWithOutExt)
     if (!skip) {
-        router.use(`/login`, require(`./login`))
-         // router.use(`/${fileWithOutExt}`, require(`./${fileWithOutExt}`)) //TODO: localhost/users
+         router.use(`/${fileWithOutExt}`, require(`./${fileWithOutExt}`)) //TODO: localhost/users
     }
 })
 
