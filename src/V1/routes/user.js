@@ -20,7 +20,7 @@ router.put('/:id',  updateUser)
 
 
 
-router.put( '/state/:id', updateUserState)
+router.put( '/:id', updateUserState)
 
 
 module.exports = router
