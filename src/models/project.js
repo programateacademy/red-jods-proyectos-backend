@@ -10,17 +10,24 @@ const ProjectScheme = new mongoose.Schema({
     required: true
   },
   axis: {
-    type: [String],
+    type: String,
     required: true 
   },
   category: {
-    type: [String],
+    type: String,
     required: true
   },
-  ods: {
-    type: [String],
-    required: true
-  },
+  ods:  [
+    {
+      url: {
+        type: String,
+        required: true
+      },
+      nameOds: {
+        type: String,
+        required: true
+      }
+    }],
   description: {
     type: String,
     required: true
