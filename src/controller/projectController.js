@@ -10,7 +10,7 @@ const getProjects = async (req, res) => {
 }
 }
 
-const getProject = async(req, res) => {
+const getProjectById = async(req, res) => {
   try {
     const one = await projectModel.findById(req.params.id);
     res.status(200).json(one);
@@ -42,7 +42,7 @@ const updateProject = async (req, res) => {
   return false;
 }
 
-const deleteProject = async (req, res) => {
+const updateProjectState = async (req, res) => {
   try {
     const resDetail = await projectModel.findOneAndRemove({ _id: req.body.id });
     res.status(200);
@@ -52,4 +52,4 @@ const deleteProject = async (req, res) => {
     res.send({ error: 'Algo ocurrio' })
 }
 }
-module.exports = { getProjects, getProject, createProject,updateProject, deleteProject }
+module.exports = { getProjects, getProjectById, createProject,updateProject, updateProjectState }
