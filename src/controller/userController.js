@@ -12,7 +12,7 @@ const getUsers = async (req, res) => {
 }
 }
 
-const getUser = async(req, res) => {
+const getUserById = async(req, res) => {
   try {
     const one = await userModel.findById(req.params.id);
     res.status(200).json(one);
@@ -43,16 +43,16 @@ const updateUser = async (req, res) => {
   }
   return false;
 }
-
-const deleteUser = async (req, res) => {
+/**pendiente a modificar */
+const updateUserState = async (req, res) => {
   try {
-    const resDetail = await userModel.findOneAndRemove({ _id: req.body.id });
-    res.status(200);
-    res.send("Eliminado Exitosamente");
-} catch (e) {
+    const resUpdate = await userModel.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true });
+    res.status(200).json(resUpdate);
+  } catch (e) {
     res.status(500)
     res.send({ error: 'Algo ocurrio' })
-}
+  }
+  return false;
 } 
 
-module.exports = { getUsers, getUser, createUser, updateUser, deleteUser}
+module.exports = { getUsers, getUserById, createUser, updateUser, updateUserState}
