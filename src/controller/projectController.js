@@ -44,12 +44,12 @@ const updateProject = async (req, res) => {
 
 const updateProjectState = async (req, res) => {
   try {
-    const resDetail = await projectModel.findOneAndRemove({ _id: req.body.id });
-    res.status(200);
-    res.send("Eliminado Exitosamente");
-} catch (e) {
+    const resUpdate = await projectModel.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true });
+    res.status(200).json(resUpdate);
+  } catch (e) {
     res.status(500)
     res.send({ error: 'Algo ocurrio' })
-}
+  }
+  return false;
 }
 module.exports = { getProjects, getProjectById, createProject,updateProject, updateProjectState }
