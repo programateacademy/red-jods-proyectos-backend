@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router('')
+const {validateCreatePutUser}=require('../../validators/putUser');
 // const checkAuth = require('../middleware/auth')
 // const checkRoleAuth = require('../middleware/roleAuth')
 const {
@@ -14,11 +15,11 @@ router.get('/', getProjects)
 
 router.get('/:id', getProjectById)
 
-router.post('/', createProject)
+router.post('/' , createProject)
 
 router.put('/:id', updateProject)
 
-router.put('/state/:id', updateProjectState)
+router.put('/state/:id',validateCreatePutUser, updateProjectState)
 
 
 module.exports = router

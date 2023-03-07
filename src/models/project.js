@@ -57,6 +57,10 @@ const ProjectScheme = new mongoose.Schema({
         required: true
       }
     }], 
+    state:{
+      type: Boolean,
+      default: false
+    },
 },
 
 {
