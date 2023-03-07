@@ -4,21 +4,21 @@ const router = express.Router('')
 // const checkRoleAuth = require('../middleware/roleAuth')
 const {
   getProjects,
-  getProject,
+  getProjectById,
   createProject,
   updateProject,
-  deleteProject } = require('../../controller/projectController')
+  updateProjectState } = require('../../controller/projectController')
  
 
 router.get('/', getProjects)
 
-router.get('/:id', getProject)
+router.get('/:id', getProjectById)
 
 router.post('/', createProject)
 
 router.put('/:id', updateProject)
 
-router.delete('/', deleteProject)
+router.put('/state/:id', updateProjectState)
 
 
 module.exports = router

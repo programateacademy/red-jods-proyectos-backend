@@ -52,7 +52,7 @@ const ProjectScheme = new mongoose.Schema({
         type: String,
         required: true
       },
-      status: {
+      state: {
         type: Boolean,
         required: true
       }
