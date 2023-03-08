@@ -7,7 +7,7 @@ const {validateCreateUser}=require('../../validators/users');
 const {getUsers, getUserById, createUser, updateUser, updateUserState} = require('../../controller/userController');
 
 //localhot:3000/Api/v1/user  
-router.get('/', checkAuth, checkRoleAuth(['admin']),getUsers)
+router.get('/', checkAuth, checkRoleAuth(['admin','user']),getUsers)
 
 
 //localhot:3000/Api/v1/user/id  
