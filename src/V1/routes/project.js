@@ -1,8 +1,8 @@
 const express = require('express')
 const router = express.Router('')
-const {validateCreatePutUser}=require('../../validators/putUser');
-// const checkAuth = require('../middleware/auth')
-// const checkRoleAuth = require('../middleware/roleAuth')
+const {validateCreateProject}=require('../../validators/project');
+const checkAuth = require('../../middleware/auth')
+ const checkRoleAuth = require('../../middleware/role')
 const {
   getProjects,
   getProjectById,
@@ -11,15 +11,15 @@ const {
   updateProjectState } = require('../../controller/projectController')
  
 
-router.get('/', getProjects)
+router.get('/',checkAuth, checkRoleAuth(['admin','user','superAdmin']), getProjects)
 
-router.get('/:id', getProjectById)
+router.get('/:id',checkAuth, checkRoleAuth(['admin','user','superAdmin']), getProjectById)
 
-router.post('/' , createProject)
+router.post('/' , checkAuth, checkRoleAuth(['admin','superAdmin']), validateCreateProject, createProject)
 
-router.put('/:id', updateProject)
+router.put('/:id',checkAuth, checkRoleAuth(['admin','superAdmin']), validateCreateProject, updateProject)
 
-router.put('/state/:id',validateCreatePutUser, updateProjectState)
+router.put('/state/:id',checkAuth, checkRoleAuth(['admin','superAdmin']), updateProjectState)
 
 
 module.exports = router
