@@ -25,4 +25,5 @@ router.put('/:id',checkAuth, checkRoleAuth(['superAdmin']),validateCreateUser,  
 router.put( '/state/:id',checkAuth, checkRoleAuth(['superAdmin']),validateCreatePutUser, updateUserState)
 
 
+
 module.exports = router
