@@ -9,12 +9,15 @@ const {
   getProjectById,
   createProject,
   updateProject,
-  updateProjectState } = require('../../controller/projectController')
+  updateProjectState,
+  getProjectContainTitle } = require('../../controller/projectController')
  
 
 router.get('/',checkAuth, checkRoleAuth(['admin','user','superAdmin']), getProjects)
 
 router.get('/:id',checkAuth, checkRoleAuth(['admin','user','superAdmin']), getProjectById)
+
+router.get('/title/:title',checkAuth, checkRoleAuth(['admin','user','superAdmin']), getProjectContainTitle)
 
 router.post('/' , checkAuth, checkRoleAuth(['admin','superAdmin']), validateCreateProject, createProject)
 

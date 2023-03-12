@@ -20,6 +20,18 @@ const getProjectById = async (req, res) => {
   }
 };
 
+const getProjectContainTitle = async (req, res) =>  {
+ const entrada =req.params.title;
+  try {
+    const one = await projectModel.find({title: { $regex: entrada, $options: 'i' } });
+    res.status(200).json(one);
+} catch (e) {
+    res.status(500)
+    res.send({ error: 'Algo ocurrio' })
+}
+  }
+
+
 const createProject = async (req, res) => {
   try {
     const resDetail = await projectModel.create(req.body);
@@ -79,4 +91,5 @@ module.exports = {
   createProject,
   updateProject,
   updateProjectState,
+  getProjectContainTitle,
 };

@@ -21,6 +21,17 @@ const getUserById = async(req, res) => {
 }
 }
 
+const getUserByName=async (req,res) =>{
+
+  try {
+    const one = await userModel.find({name:req.params.name});
+    res.status(200).json(one);
+} catch (e) {
+    res.status(500)
+    res.send({ error: 'Algo ocurrio' })
+}
+};
+
 const createUser = async (req, res) => {
   try {
     //TODO: Datos que envias desde el front (postman)
@@ -83,4 +94,4 @@ const updateUserState = async (req, res) => {
   });
 } 
 
-module.exports = { getUsers, getUserById, createUser, updateUser, updateUserState}
+module.exports = { getUsers, getUserById, createUser, updateUser, updateUserState, getUserByName}
