@@ -50,7 +50,6 @@ const updateProjectState = async (req, res) => {
   const state = req.body.state;
   projectModel.findById(id, (err, producto) => {
     if (err) {
-      console.log(err);
       return res.status(500).json({ error: "Error al buscar el producto" });
     }
 
@@ -61,7 +60,6 @@ const updateProjectState = async (req, res) => {
     producto.state = state;
     producto.save((err, productoActualizado) => {
       if (err) {
-        console.log(err);
         return res
           .status(500)
           .json({ error: "Error al actualizar el producto" });
