@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router('')
 const {validateCreateProject}=require('../../validators/project');
+const {validateCreatePutProject}=require('../../validators/putProject');
 const checkAuth = require('../../middleware/auth')
  const checkRoleAuth = require('../../middleware/role')
 const {
@@ -19,7 +20,7 @@ router.post('/' , checkAuth, checkRoleAuth(['admin','superAdmin']), validateCrea
 
 router.put('/:id',checkAuth, checkRoleAuth(['admin','superAdmin']), validateCreateProject, updateProject)
 
-router.put('/state/:id',checkAuth, checkRoleAuth(['admin','superAdmin']), updateProjectState)
+router.put('/state/:id',checkAuth, checkRoleAuth(['admin','superAdmin']),validateCreatePutProject, updateProjectState)
 
 
 module.exports = router

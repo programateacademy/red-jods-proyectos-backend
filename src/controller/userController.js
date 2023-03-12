@@ -1,6 +1,5 @@
-// const {httpErro} require=('../helpers/handleBcrypt.js')
-/**metodos y funciones post get put delete busqueda */
 const userModel = require('../models/user');
+const { encrypt } = require('../helpers/handleBcrypt')
 
 const getUsers = async (req, res) => {
   try {
@@ -24,11 +23,25 @@ const getUserById = async(req, res) => {
 
 const createUser = async (req, res) => {
   try {
-    const resDetail = await userModel.create(req.body);
-    res.status(200).json(resDetail);
+    //TODO: Datos que envias desde el front (postman)
+    const {name, last_name, email, password, phone,role, state } = req.body
+
+    const passwordHash = await encrypt(password) //TODO: (123456)<--- Encriptando!!
+    const registerUser = await userModel.create({
+        name,
+        last_name,
+        email,
+        phone,
+        role,
+        state,
+        password: passwordHash
+    })
+
+    res.send({ data: registerUser })
+
 } catch (e) {
-    res.status(500)
-    res.send({ error: 'Algo ocurrio' })
+  res.status(500)
+  res.send({ error: 'Correo Ya Existente' })
 }
 }
 
@@ -39,20 +52,35 @@ const updateUser = async (req, res) => {
     res.status(200).json(resUpdate);
   } catch (e) {
     res.status(500)
-    res.send({ error: 'Algo ocurrio' })
+    res.send({ error: 'Correo Ya Existente' })
   }
   return false;
 }
-/**pendiente a modificar */
+
+
 const updateUserState = async (req, res) => {
-  try {
-    const resUpdate = await userModel.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true });
-    res.status(200).json(resUpdate);
-  } catch (e) {
-    res.status(500)
-    res.send({ error: 'Algo ocurrio' })
-  }
-  return false;
+  const id = req.params.id;
+  const state = req.body.state;
+  userModel.findById(id, (err, user) => {
+    if (err) {
+      return res.status(500).json({ error: "Error al buscar el user" });
+    }
+
+    if (!user) {
+      return res.status(404).json({ error: "El user no existe" });
+    }
+    user.state = state;
+    user.save((err, userActualizado) => {
+      if (err) {
+
+        return res
+          .status(500)
+          .json({ error: "Error al actualizar el user" });
+      }
+
+      res.json(userActualizado);
+    });
+  });
 } 
 
 module.exports = { getUsers, getUserById, createUser, updateUser, updateUserState}

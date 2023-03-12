@@ -48,26 +48,26 @@ const updateProject = async (req, res) => {
 const updateProjectState = async (req, res) => {
   const id = req.params.id;
   const state = req.body.state;
-  projectModel.findById(id, (err, producto) => {
+  projectModel.findById(id, (err, project) => {
     if (err) {
-      console.log(err);
-      return res.status(500).json({ error: "Error al buscar el producto" });
+
+      return res.status(500).json({ error: "Error al buscar el project" });
     }
 
-    if (!producto) {
-      return res.status(404).json({ error: "El producto no existe" });
+    if (!project) {
+      return res.status(404).json({ error: "El project no existe" });
     }
 
-    producto.state = state;
-    producto.save((err, productoActualizado) => {
+    project.state = state;
+    project.save((err, projectActualizado) => {
       if (err) {
-        console.log(err);
+
         return res
           .status(500)
-          .json({ error: "Error al actualizar el producto" });
+          .json({ error: "Error al actualizar el project" });
       }
 
-      res.json(productoActualizado);
+      res.json(projectActualizado);
     });
   });
 };
