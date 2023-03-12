@@ -4,11 +4,11 @@ const userModel = require('../models/user')
 
 //TODO: Login!
 const loginCtrl = async (req, res) => {
+
     try {
       
-        const {name, password} = req.body
-        const user = await userModel.findOne({ name })
-
+        const {email, password} = req.body
+        const user = await userModel.findOne({ email })
         if (!user) {
             res.status(404)
             res.send({ error: 'User not found' })
@@ -22,10 +22,11 @@ const loginCtrl = async (req, res) => {
           }
         } //TODO: Contraseña!
 
+        
         //TODO JWT 👉
         const tokenSession = await tokenSign(user) //TODO: 2d2d2d2d2d2d2
 
-        if (checkPassword) { //TODO Contraseña es correcta!
+        if (checkPassword && user.state==true) { //TODO Contraseña es correcta!
             res.send({
                 data: user,
                 tokenSession
@@ -40,6 +41,13 @@ const loginCtrl = async (req, res) => {
             })
             return
         }
+        if (!user.state) {
+          res.status(409)
+          res.send({
+              error: 'Inactivo'
+          })
+          return
+      }
 
     } catch (e) {
       res.status(500)
@@ -51,13 +59,15 @@ const loginCtrl = async (req, res) => {
 const registerCtrl = async (req, res) => {
     try {
         //TODO: Datos que envias desde el front (postman)
-        const {name, email, password, phone, state } = req.body
+        const {name, last_name, email, password, phone,role, state } = req.body
 
         const passwordHash = await encrypt(password) //TODO: (123456)<--- Encriptando!!
         const registerUser = await userModel.create({
             name,
+            last_name,
             email,
             phone,
+            role,
             state,
             password: passwordHash
         })

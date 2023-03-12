@@ -5,7 +5,7 @@ const checkRoleAuth = require('../../middleware/role')
 const {validateCreateUser}=require('../../validators/users');
 const {validateCreatePutUser}=require('../../validators/putUser');
 
-const {getUsers, getUserById, createUser, updateUser, updateUserState} = require('../../controller/userController');
+const {getUsers, getUserById, createUser, updateUser, updateUserState, getUserByName} = require('../../controller/userController');
 
 //localhot:3000/Api/v1/user  
 router.get('/', checkAuth, checkRoleAuth(['superAdmin']),getUsers)
@@ -13,7 +13,8 @@ router.get('/', checkAuth, checkRoleAuth(['superAdmin']),getUsers)
 
 //localhot:3000/Api/v1/user/id  
 router.get('/:id',checkAuth, checkRoleAuth(['superAdmin']), getUserById)
-
+//localhot:3000/Api/v1/user/name  
+router.get('/name/:name',checkAuth, checkRoleAuth(['superAdmin']), getUserByName)
 
 //localhot:3000/Api/v1/user
 router.post('/',checkAuth, checkRoleAuth(['superAdmin']), validateCreateUser,  createUser)
