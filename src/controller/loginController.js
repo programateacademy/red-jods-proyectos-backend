@@ -27,6 +27,7 @@ const loginCtrl = async (req, res) => {
         const tokenSession = await tokenSign(user) //TODO: 2d2d2d2d2d2d2
 
         if (checkPassword && user.state==true) { //TODO Contraseña es correcta!
+            res.status(200)
             res.send({
                 data: user,
                 tokenSession
@@ -71,7 +72,7 @@ const registerCtrl = async (req, res) => {
             state,
             password: passwordHash
         })
-
+        res.status(200)
         res.send({ data: registerUser })
 
     } catch (e) {
