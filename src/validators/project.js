@@ -10,7 +10,7 @@ const {check} = require('express-validator');
 }
 
 const validateCreateProject = [
-  check('userName').exists().not().isEmpty().withMessage('El campo nombre y apellido es requerido').custom(onlyLettersAndSpaces).withMessage('El campo debe contener únicamente letras y espacios'),
+  check('emailUser').exists().not().isEmpty().withMessage('El campo email es requerido').isEmail().withMessage('El campo email debe ser una dirección de correo electrónico válida'),
   check('title').exists().not().isEmpty().withMessage('El campo title es requerido').custom(onlyLettersAndSpaces).withMessage('El campo debe contener únicamente letras y espacios'),
   check('axis').exists().not().isEmpty().withMessage('El campo ejes es requerido').isIn(['Personas', 'Prosperidad','Planeta','Paz','Alianzas']).withMessage('El campo rol debe ser igual a "Personas", "Prosperidad","Planeta","Paz" o "Alianzas"'), 
   
@@ -32,20 +32,19 @@ const validateCreateProject = [
   check('description').exists().not().isEmpty().withMessage('El campo description es requerido').custom(onlyLettersAndSpaces).withMessage('El campo debe contener únicamente letras y espacios'),
   check('indicator').exists().not().isEmpty().withMessage('El campo indicator es requerido').custom(onlyLettersAndSpaces).withMessage('El campo debe contener únicamente letras y espacios'),
   check('objective').exists().not().isEmpty().withMessage('El campo objective es requerido').custom(onlyLettersAndSpaces).withMessage('El campo debe contener únicamente letras y espacios'),
-  check('img').exists().not().isEmpty().withMessage('El campo objective es requerido').isURL().withMessage('El campo img debe ser una URL válida'),
   check('doc').exists().not().isEmpty().withMessage('El campo objective es requerido').isURL().withMessage('El campo doc debe ser una URL válida'),
 
   check('task').isArray().withMessage('El campo task debe ser un arreglo').custom((arreglo) => {
     arreglo.forEach((objeto) => {
 
       if (!objeto.name ) {
-        throw new Error('El campo name no debe estar vacio');
+        throw new Error('El campo name de task no debe estar vacio');
       }
       if (typeof(objeto.state)!='boolean') {
         throw new Error('El campo state debe ser un boolean');
       }
       if (!onlyLettersAndSpaces(objeto.name)) {
-        throw new Error('El campo name solo puede contener nombre y espacios');
+        throw new Error('El campo name de task solo puede contener nombre y espacios');
       }
 
     });

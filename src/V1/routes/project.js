@@ -6,7 +6,7 @@ const checkAuth = require('../../middleware/auth')
  const checkRoleAuth = require('../../middleware/role')
 const {
   getProjects,
-  getProjectById,
+  getProjectByEmail,
   createProject,
   updateProject,
   updateProjectState,
@@ -15,9 +15,9 @@ const {
 
 router.get('/',checkAuth, checkRoleAuth(['admin','user','superAdmin']), getProjects)
 
-router.get('/:id',checkAuth, checkRoleAuth(['admin','user','superAdmin']), getProjectById)
+router.get('/:email',checkAuth, checkRoleAuth(['admin','user','superAdmin']), getProjectByEmail)
 
-router.get('/title/:title',checkAuth, checkRoleAuth(['admin','user','superAdmin']), getProjectContainTitle)
+router.get('/title/:email/:title',checkAuth, checkRoleAuth(['admin','user','superAdmin']), getProjectContainTitle)
 
 router.post('/' , checkAuth, checkRoleAuth(['admin','superAdmin']), validateCreateProject, createProject)
 

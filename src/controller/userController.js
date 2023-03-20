@@ -1,3 +1,4 @@
+
 const userModel = require("../models/user");
 const { encrypt } = require("../helpers/handleBcrypt");
 
@@ -35,7 +36,6 @@ const createUser = async (req, res) => {
   try {
     //TODO: Datos que envias desde el front (postman)
     const { name, last_name, email, password, phone, role, state } = req.body;
-
     const passwordHash = await encrypt(password); //TODO: (123456)<--- Encriptando!!
     const registerUser = await userModel.create({
       name,
@@ -46,8 +46,9 @@ const createUser = async (req, res) => {
       state,
       password: passwordHash,
     });
-
+    res.status(200);
     res.send({ data: registerUser });
+
   } catch (e) {
     res.status(500);
     res.send({ error: "Correo Ya Existente" });

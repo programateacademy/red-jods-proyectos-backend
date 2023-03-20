@@ -1,9 +1,10 @@
 const mongoose = require('mongoose')
 
 const ProjectScheme = new mongoose.Schema({
-  userName: {
+  emailUser: {
     type: String,
-    required: true
+    required: true,
+    ref:'user'
   },
   title: {
     type: String,
@@ -35,9 +36,6 @@ const ProjectScheme = new mongoose.Schema({
   objective: {
     type: String,
     required: true
-  },
-  img: {
-    type: String,
   },
   doc: {
     type: String,

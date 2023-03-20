@@ -5,6 +5,7 @@ const UserScheme = new mongoose.Schema({
         type: String,
         required: true
     },
+    failedLoginAttempts: { type: Number, default: 0 },
     last_name: {
         type: String,
         required: true
@@ -33,8 +34,10 @@ const UserScheme = new mongoose.Schema({
 },
     {
         timestamps: true,
-        versionKey: false
+        versionKey: false,
+        resetPassword:false,
 })
+
 
 
 module.exports = mongoose.model('user', UserScheme)
