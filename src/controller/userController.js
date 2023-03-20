@@ -1,4 +1,4 @@
-
+const { transporter } = require('../../config/mailer')
 const userModel = require("../models/user");
 const { encrypt } = require("../helpers/handleBcrypt");
 
@@ -49,10 +49,28 @@ const createUser = async (req, res) => {
     res.status(200);
     res.send({ data: registerUser });
 
-  } catch (e) {
-    res.status(500);
-    res.send({ error: "Correo Ya Existente" });
-  }
+    const emailUser = process.env.USER;
+    const mailOptions = {
+      from: emailUser, // sender address
+      to: "jbruthlizcano@gmail.com", // list of receivers
+      subject: 'Correo electrónico de prueba',
+      text: 'Este es un correo electrónico de prueba enviado desde Node.js y Express.js.'
+    };
+    // Enviar el correo electrónico utilizando el transporte SMTP
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        console.log(error);
+        res.send('Error al enviar correo electrónico.');
+      } else {
+        console.log(info)
+        res.send('Correo electrónico enviado correctamente.');
+      }
+    });
+
+} catch (e) {
+  res.status(500);
+  res.send({ error: "Correo Ya Existente" });
+}
 };
 
 const updateUser = async (req, res) => {
