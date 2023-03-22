@@ -3,7 +3,9 @@ const router = express.Router()
 const {validateCreate}=require('../../validators/logins');
 const {validateCreateUser}=require('../../validators/register');
 const {validateForgot}=require('../../validators/forgotPassword');
-const { loginCtrl, registerCtrl,forgotCtrl,recoveryCtrl } = require('../../controller/loginController')
+const { loginCtrl, registerCtrl } = require('../../controller/loginController')
+const {forgotCtrl } = require('../../controller/forgotController')
+const {recoveryCtrl } = require('../../controller/recoveryController')
 const checkFailedLoginAttempts = require('../../middleware/failedLoginAttempts')
 const checkEmail= require('../../middleware/tokenForgot')
 
@@ -17,7 +19,7 @@ router.post('/register',validateCreateUser,  registerCtrl)
 // localhost:3000/Api/v1/login/register/
 router.post('/forgot-password',validateForgot ,  forgotCtrl)
 
-// localhost:3000/Api/v1/login/register/
+// localhost:3000/Api/v1/login/password-recovery/
 router.post('/password-recovery',checkEmail, validateCreate, recoveryCtrl)
 
 

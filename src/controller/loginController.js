@@ -1,8 +1,6 @@
 const { encrypt, compare } = require('../helpers/handleBcrypt')
 const { tokenSign } = require('../helpers/generateToken')
-const { tokenForgot } = require('../helpers/ForgotToken')
 const userModel = require('../models/user')
-const { transporter } = require('../../config/mailer')
 
 
 //TODO: Login!
@@ -50,86 +48,8 @@ const loginCtrl = async (req, res) => {
     res.send({ error: 'Algo ocurrio' })
   }
 }
-// Olvidar la contraseña
-const forgotCtrl = async (req, res) => {
-  try {
-
-    const user = await userModel.findOne({ email: req.body.email })
-    if (!user) {
-      res.status(409)
-      res.send({
-        error: 'Inexistente'
-      })
-      return
-    }
-
-    //TODO JWT 👉
-    const tokenForget = await tokenForgot(user) //TODO: 2d2d2d2d2d2d2
-    if (user.state == true) { //TODO Contraseña es correcta!
-
-      const emailUser = process.env.USER;
-      const mailOptions = {
-        from: emailUser, // sender address
-        to: req.body.email, // list of receivers
-        subject: 'Recuperación de contraseña de Red Jobs Projects',
-        html: `
-      <p> Bienvenida ${user.name},  a Red Jobs Projects</p>
-      <p> Su usuario es: ${user.email}</p>
-
-    `
-      };
-      // Enviar el correo electrónico utilizando el transporte SMTP
-      transporter.sendMail(mailOptions, (error) => {
-        if (error) {
-          res.send('Error al enviar correo electrónico.', error);
-        } else {
-          res.status(200);
-          res.send({
-            email: user.email,
-            tokenForget
-          })
-        }
-      });
-     
-      return
-    }
-    if (!user.state) {
-      res.status(409)
-      res.send({
-        error: 'Inactivo'
-      })
-      return
-    }
-
-  } catch (e) {
-    res.status(500)
-    res.send({ error: 'Algo ocurrio' })
-  }
-}
 
 
-const recoveryCtrl = async (req, res) => {
-  try {
-    const { email, password } = req.body;
-    const passwordHash = await encrypt(password);
-    const user = await userModel.findOne({ email })
-
-    if (!user) {
-      return res.status(404).json({ error: "El user no existe" });
-    } else {
-      user.password = passwordHash;
-      const resUpdate = await userModel.findOneAndUpdate(
-        { email: email },
-        user,
-        { new: true }
-      );
-      res.status(200).json(resUpdate);
-    }
-  } catch (e) {
-    res.status(500);
-    res.send({ error: "Algo ocurrio" });
-  }
-};
 
 
 //TODO: Registramos usuario!
@@ -159,4 +79,4 @@ const registerCtrl = async (req, res) => {
 
 
 
-module.exports = { loginCtrl, registerCtrl, forgotCtrl, recoveryCtrl }
+module.exports = { loginCtrl, registerCtrl }
