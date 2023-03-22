@@ -2,6 +2,7 @@ const { encrypt, compare } = require('../helpers/handleBcrypt')
 const { tokenSign } = require('../helpers/generateToken')
 const { tokenForgot } = require('../helpers/ForgotToken')
 const userModel = require('../models/user')
+const { transporter } = require('../../config/mailer')
 
 
 //TODO: Login!
@@ -65,11 +66,31 @@ const forgotCtrl = async (req, res) => {
     //TODO JWT 👉
     const tokenForget = await tokenForgot(user) //TODO: 2d2d2d2d2d2d2
     if (user.state == true) { //TODO Contraseña es correcta!
-      res.status(200);
-      res.send({
-        email: user.email,
-        tokenForget
-      })
+
+      const emailUser = process.env.USER;
+      const mailOptions = {
+        from: emailUser, // sender address
+        to: req.body.email, // list of receivers
+        subject: 'Recuperación de contraseña de Red Jobs Projects',
+        html: `
+      <p> Bienvenida ${user.name},  a Red Jobs Projects</p>
+      <p> Su usuario es: ${user.email}</p>
+
+    `
+      };
+      // Enviar el correo electrónico utilizando el transporte SMTP
+      transporter.sendMail(mailOptions, (error) => {
+        if (error) {
+          res.send('Error al enviar correo electrónico.', error);
+        } else {
+          res.status(200);
+          res.send({
+            email: user.email,
+            tokenForget
+          })
+        }
+      });
+     
       return
     }
     if (!user.state) {

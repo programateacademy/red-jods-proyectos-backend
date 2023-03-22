@@ -46,24 +46,26 @@ const createUser = async (req, res) => {
       state,
       password: passwordHash,
     });
-    res.status(200);
-    res.send({ data: registerUser });
+
 
     const emailUser = process.env.USER;
     const mailOptions = {
       from: emailUser, // sender address
-      to: "jbruthlizcano@gmail.com", // list of receivers
-      subject: 'Correo electrónico de prueba',
-      text: 'Este es un correo electrónico de prueba enviado desde Node.js y Express.js.'
+      to: email, // list of receivers
+      subject: 'Credenciales de Red Jobs Projects',
+      html: `
+      <p> Bienvenida ${name},  a Red Jobs Projects</p>
+      <p> Su usuario es: ${email}</p>
+      <p> Su contraseña es: ${password}</p>
+    `
     };
     // Enviar el correo electrónico utilizando el transporte SMTP
-    transporter.sendMail(mailOptions, (error, info) => {
+    transporter.sendMail(mailOptions, (error) => {
       if (error) {
-        console.log(error);
-        res.send('Error al enviar correo electrónico.');
+        res.send('Error al enviar correo electrónico.' , error);
       } else {
-        console.log(info)
-        res.send('Correo electrónico enviado correctamente.');
+        res.status(200);
+        res.send({ data: registerUser });
       }
     });
 
