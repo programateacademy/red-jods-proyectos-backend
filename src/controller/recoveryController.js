@@ -1,6 +1,6 @@
 const userModel = require('../models/user')
 const { encrypt } = require('../helpers/handleBcrypt')
-
+//Recuperar Contraseña
 const recoveryCtrl = async (req, res) => {
     try {
       const { email, password } = req.body;

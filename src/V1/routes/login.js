@@ -16,7 +16,7 @@ router.post('/', checkFailedLoginAttempts, validateCreate, loginCtrl)
 // localhost:3000/Api/v1/login/register/
 router.post('/register',validateCreateUser,  registerCtrl)
 
-// localhost:3000/Api/v1/login/register/
+// localhost:3000/Api/v1/login/forgot-password/
 router.post('/forgot-password',validateForgot ,  forgotCtrl)
 
 // localhost:3000/Api/v1/login/password-recovery/
