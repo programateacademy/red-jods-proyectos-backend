@@ -62,7 +62,7 @@ router.get('/:id',checkAuth, checkRoleAuth(['superAdmin']), getUserById)
  *     tags:
  *       - Users
  *     parameters:
- *       - name: id
+ *       - name: name
  *         in: path
  *         description: Nombre del usuario
  *         required: true
