@@ -20,5 +20,5 @@ app.use('*', (req, res) => {
 
 dbConnect()
 app.listen(PORT, () => {
-    console.log('API lista por el puerto ', PORT);
+    console.log('API lista');
 })

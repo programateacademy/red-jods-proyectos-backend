@@ -5,7 +5,7 @@ const tokenSign = async (user) => { //TODO: Genera Token
         {
             _id: user._id, //TODO: <---
             role: user.role
-        }, //TODO: Payload ! Carga útil
+        }, 
         process.env.JWT_SECRET, //TODO ENV
         {
             expiresIn: "1h", //TODO tiempo de vida

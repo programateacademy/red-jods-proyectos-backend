@@ -5,7 +5,7 @@ const tokenForgot = async (user) => { //TODO: Genera Token
         {
             _id: user._id, //TODO: <---
             email: user.email
-        }, //TODO: Payload ! Carga útil
+        }, 
         process.env.JWT_SECRET_FORGOT, //TODO ENV
         {
             expiresIn: "2m", //TODO tiempo de vida

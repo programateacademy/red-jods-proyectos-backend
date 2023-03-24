@@ -55,7 +55,7 @@ const loginCtrl = async (req, res) => {
 //TODO: Registramos usuario!
 const registerCtrl = async (req, res) => {
   try {
-    //TODO: Datos que envias desde el front (postman)
+    
     const { name, last_name, email, password, phone, role, state } = req.body
 
     const passwordHash = await encrypt(password) //TODO: (123456)<--- Encriptando!!
