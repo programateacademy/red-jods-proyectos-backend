@@ -15,7 +15,7 @@ const checkEmail= require('../../middleware/tokenForgot')
  * /Api/v1/login:
  *   post:
  *     summary: Login en el Api
- *     description: Solo se requiere nombre y contraseña, el otro dato es opcional
+ *     description: Solo se requiere email y contraseñal
  *     tags:
  *       - Login
  *     requestBody:
@@ -27,7 +27,7 @@ const checkEmail= require('../../middleware/tokenForgot')
  *     responses:
  *       '200':
  *         description: Ingreso Exitoso
- *       '400':
+ *       '409':
  *         description: Error en la autenticación
  */
 router.post('/', checkFailedLoginAttempts, validateCreate, loginCtrl)
@@ -38,7 +38,52 @@ router.post('/', checkFailedLoginAttempts, validateCreate, loginCtrl)
  * /Api/v1/login/register:
  *   post:
  *     summary: Registro en la Api
- *     description: Solo se requiere nombre y contraseña, el otro dato es opcional ya que por defecto se establece user
+ *     description: Todos los datos son requeridos
+ *     tags:
+ *       - Login
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/user'
+ *     responses:
+ *       '200':
+ *         description: Registro Exitoso
+ *       '409':
+ *         description: email ya existente en la Base de Datos
+ */
+router.post('/register',validateCreateUser,  registerCtrl)
+
+
+/**
+ * @swagger
+ * /Api/v1/login/forgot-password:
+ *   post:
+ *     summary: Recovery password 
+ *     description: Solo se requiere el email 
+ *     tags:
+ *       - Login
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/forgot'
+ *     responses:
+ *       '200':
+ *         description: Envio de correo Exitosos
+ *       '409':
+ *         description: Usuario no existente
+ */
+router.post('/forgot-password',validateForgot ,  forgotCtrl)
+
+/**
+ * @swagger
+ * /Api/v1/login/password-recovery:
+ *   post:
+ *     summary: Recovery password 
+ *     description: Solo se requiere email y contraseña
  *     tags:
  *       - Login
  *     requestBody:
@@ -50,15 +95,10 @@ router.post('/', checkFailedLoginAttempts, validateCreate, loginCtrl)
  *     responses:
  *       '200':
  *         description: Registro Exitoso
- *       '400':
+ *       '409':
  *         description: Nombre del usuario ya existente en la BD
  */
-router.post('/register',validateCreateUser,  registerCtrl)
 
-// localhost:3000/Api/v1/login/forgot-password/
-router.post('/forgot-password',validateForgot ,  forgotCtrl)
-
-// localhost:3000/Api/v1/login/password-recovery/
 router.post('/password-recovery',checkEmail, validateCreate, recoveryCtrl)
 
 

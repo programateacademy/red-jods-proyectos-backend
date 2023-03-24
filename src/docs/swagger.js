@@ -6,7 +6,7 @@ const swaggerUi = require('swagger-ui-express');
 const option = {
   definition: {
     openapi: "3.0.0",
-    info: { title: "DishesRestaurants Api", version: "1.0.0" },
+    info: { title: "Red Jobs Project", version: "1.0.0" },
     servers: [{
       url: "http://localhost:3000"
     }],
@@ -18,6 +18,14 @@ const option = {
         },
       },
       schemas: {
+        forgot: {
+            type: "object",
+            properties: {
+              email: {
+                type: "string"
+              }
+            }
+          },
         login: {
           type: "object",
           properties: {
@@ -33,7 +41,6 @@ const option = {
           type: "object",
           properties: {
             name: { type: "string" },
-            failedLoginAttempts: { type: "integer" },
             last_name: { type: "string"},
             email: { type: "string"},
             password: {  type: "string"  },
