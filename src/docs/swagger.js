@@ -18,6 +18,14 @@ const option = {
         },
       },
       schemas: {
+        projectState: {
+            type: "object",
+            properties: {
+              state: {
+                type: "boolean"
+              }
+            }
+          },
         forgot: {
             type: "object",
             properties: {

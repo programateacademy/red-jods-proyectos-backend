@@ -3,6 +3,7 @@ const router = express.Router()
 const checkAuth = require('../../middleware/auth')
 const checkRoleAuth = require('../../middleware/role')
 const {validateCreateUser}=require('../../validators/users');
+const {validateUpdateUser}=require('../../validators/userPutAll');
 const {validateCreatePutUser}=require('../../validators/putUser');
 
 const {getUsers, getUserById, createUser, updateUser, updateUserState, getUserByName} = require('../../controller/userController');
@@ -131,7 +132,7 @@ router.post('/',checkAuth, checkRoleAuth(['superAdmin']), validateCreateUser,  c
  *     security:
  *       - bearerAuth: []
  */
-router.put('/:id',checkAuth, checkRoleAuth(['superAdmin']),validateCreateUser,  updateUser)
+router.put('/:id',checkAuth, checkRoleAuth(['superAdmin']),validateUpdateUser,  updateUser)
 
 //localhot:3000/Api/v1/user/state/id
 /**
@@ -154,7 +155,7 @@ router.put('/:id',checkAuth, checkRoleAuth(['superAdmin']),validateCreateUser,  
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/user'
+ *             $ref: '#/components/schemas/projectState'
  *     responses:
  *       '200':
  *         description: Respuesta exitosa
