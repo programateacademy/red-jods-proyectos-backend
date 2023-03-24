@@ -1,8 +1,8 @@
 const swaggerJsDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
+
+
 // Metadata
-
-
 const option = {
   definition: {
     openapi: "3.0.0",
@@ -112,14 +112,12 @@ const option = {
 const swaggerSpec = swaggerJsDoc(option);
 
 // function to doc
-
-const swaggerDoc = (app, port) => {
+const swaggerDoc = (app) => {
   app.use('/Api/v1/swagger/docs/', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
   app.get('/Api/v1/swagger/docs.json', (req, res) => {
     res.setHeader('Comtent-Type', 'application/json');
     res.send(swaggerSpec);
   })
-  console.log(`Versión 1 Docs are available at http://localhost:${port}/Api/v1/swagger/docs/`)
 }
 
 

@@ -1,6 +1,6 @@
 const projectModel = require("../models/project");
 const userModel = require("../models/user");
-
+//Listar proyecto
 const getProjects = async (req, res) => {
   try {
     const listAll = await projectModel.find({});
@@ -11,6 +11,7 @@ const getProjects = async (req, res) => {
   }
 };
 
+//Listar proyectos por email
 const getProjectByEmail= async (req, res) => {
   const email =req.params.email;
   try {
@@ -22,6 +23,7 @@ const getProjectByEmail= async (req, res) => {
   }
 };
 
+//Listar proyectos por email y titulo
 const getProjectContainTitle = async (req, res) =>  {
  const entrada =req.params.title;
  const email =req.params.email;
@@ -35,7 +37,7 @@ const getProjectContainTitle = async (req, res) =>  {
 }
 }
 
-
+//Crear proyectos
 const createProject = async (req, res) => {
   const emailUser=req.body.emailUser;
   try {
@@ -54,6 +56,7 @@ const createProject = async (req, res) => {
   }
 };
 
+//Actualizar el proyecto
 const updateProject = async (req, res) => {
   const emailUser=req.body.emailUser;
   try {
@@ -75,6 +78,7 @@ const updateProject = async (req, res) => {
   }
 };
 
+//Actualizar el proyecto
 const updateProjectState = async (req, res) => {
   const id = req.params.id;
   const state = req.body.state;

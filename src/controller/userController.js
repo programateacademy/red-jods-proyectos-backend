@@ -2,7 +2,7 @@ const { transporter } = require('../../config/mailer')
 const userModel = require("../models/user");
 const { encrypt } = require("../helpers/handleBcrypt");
 
-
+// Listar usuario
 const getUsers = async (req, res) => {
   try {
     const listAll = await userModel.find({});
@@ -12,7 +12,7 @@ const getUsers = async (req, res) => {
     res.send({ error: "Algo ocurrio" });
   }
 };
-
+//Listar usuarios por id
 const getUserById = async (req, res) => {
   try {
     const one = await userModel.findById(req.params.id);
@@ -23,6 +23,7 @@ const getUserById = async (req, res) => {
   }
 };
 
+//Listar usuarios por name
 const getUserByName = async (req, res) => {
   try {
     const one = await userModel.find({ name: req.params.name });
@@ -33,6 +34,7 @@ const getUserByName = async (req, res) => {
   }
 };
 
+//Crear usuario 
 const createUser = async (req, res) => {
   try {
     //TODO: Datos que envias desde el front (postman)
@@ -137,6 +139,7 @@ const createUser = async (req, res) => {
 }
 };
 
+//actualizar usuario
 const updateUser = async (req, res) => {
   const { name, last_name, email, phone, role, state } = req.body;
   const id = req.params.id;
@@ -164,6 +167,7 @@ const updateUser = async (req, res) => {
   });
 };
 
+//Actualizar estado del usuario
 const updateUserState = async (req, res) => {
   const id = req.params.id;
   const state = req.body.state;

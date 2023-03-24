@@ -1,6 +1,7 @@
 const { tokenForgot } = require('../helpers/ForgotToken')
 const userModel = require('../models/user')
 const { transporter } = require('../../config/mailer')
+
 // Olvido la contraseña
 const forgotCtrl = async (req, res) => {
     try {

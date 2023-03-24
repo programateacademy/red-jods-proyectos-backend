@@ -52,7 +52,7 @@ const loginCtrl = async (req, res) => {
 
 
 
-//TODO: Registramos usuario!
+//TODO: Registro un usuario
 const registerCtrl = async (req, res) => {
   try {
     
