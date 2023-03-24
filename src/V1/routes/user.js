@@ -8,7 +8,7 @@ const {validateCreatePutUser}=require('../../validators/putUser');
 
 const {getUsers, getUserById, createUser, updateUser, updateUserState, getUserByName} = require('../../controller/userController');
 
-//localhot:3000/Api/v1/user  
+
  /**
  * @swagger
  * /Api/v1/user/:
@@ -134,7 +134,7 @@ router.post('/',checkAuth, checkRoleAuth(['superAdmin']), validateCreateUser,  c
  */
 router.put('/:id',checkAuth, checkRoleAuth(['superAdmin']),validateUpdateUser,  updateUser)
 
-//localhot:3000/Api/v1/user/state/id
+
 /**
  * @swagger
  * /Api/v1/user/state/{_id}:

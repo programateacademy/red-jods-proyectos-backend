@@ -114,7 +114,7 @@ const forgotCtrl = async (req, res) => {
   
     } catch (e) {
       res.status(500)
-      res.send({ error: 'Algo ocurrio Nose' })
+      res.send({ error: 'Algo ocurrio No se' })
     }
   }
 

@@ -100,7 +100,6 @@ router.post('/forgot-password',validateForgot ,  forgotCtrl)
  *     security:
  *       - bearerAuth: []
  */
-
 router.post('/password-recovery',checkEmail, validateCreate, recoveryCtrl)
 
 

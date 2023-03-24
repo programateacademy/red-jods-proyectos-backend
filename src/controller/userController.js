@@ -1,22 +1,8 @@
 const { transporter } = require('../../config/mailer')
 const userModel = require("../models/user");
 const { encrypt } = require("../helpers/handleBcrypt");
- /**
- * @swagger
- * /Api/v1/users/:
- *   get:
- *     summary: Listado de usuarios Registrados
- *     description: Este endpoint unicamente lo podra utilizar un usuario con rol admin
- *     tags:
- *       - Users
- *     responses:
- *       '200':
- *         description: Acción  exitosa
- *       '400':
- *         description: Error en la petición
- *     security:
- *       - bearerAuth: []
- */
+
+
 const getUsers = async (req, res) => {
   try {
     const listAll = await userModel.find({});

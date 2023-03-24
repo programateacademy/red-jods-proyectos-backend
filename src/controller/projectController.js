@@ -33,7 +33,7 @@ const getProjectContainTitle = async (req, res) =>  {
     res.status(500)
     res.send({ error: 'Algo ocurrio' })
 }
-  }
+}
 
 
 const createProject = async (req, res) => {
