@@ -97,6 +97,8 @@ router.post('/forgot-password',validateForgot ,  forgotCtrl)
  *         description: Registro Exitoso
  *       '409':
  *         description: Nombre del usuario ya existente en la BD
+ *     security:
+ *       - bearerAuth: []
  */
 
 router.post('/password-recovery',checkEmail, validateCreate, recoveryCtrl)
