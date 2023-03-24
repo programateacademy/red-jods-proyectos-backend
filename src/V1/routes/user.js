@@ -80,7 +80,7 @@ router.get('/name/:name',checkAuth, checkRoleAuth(['superAdmin']), getUserByName
 
 /**
  * @swagger
- * /Api/v1/user:
+ * /Api/v1/user/:
  *   post:
  *     summary: Crear un usuari en la B.D.
  *     description: Creacion de un nuevo usuario
