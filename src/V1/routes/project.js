@@ -153,7 +153,7 @@ router.put('/:id',checkAuth, checkRoleAuth(['admin','superAdmin']), validateCrea
  *     summary: Modificar Estado del proyecto
  *     description: Actualización del estado del proyecto
  *     tags:
- *       - Users
+ *       - Project
  *     parameters:
  *       - name: _id
  *         in: path
