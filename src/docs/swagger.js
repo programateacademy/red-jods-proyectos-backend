@@ -57,6 +57,17 @@ const option = {
             state:{  type: "boolean"}
           }
         },
+        putUser: {
+            type: "object",
+            properties: {
+              name: { type: "string" },
+              last_name: { type: "string"},
+              email: { type: "string"},
+              phone: { type: "integer" },
+              role: { type: "string"  },
+              state:{  type: "boolean"}
+            }
+          },
         Project: {
           type: "object",
           properties: {

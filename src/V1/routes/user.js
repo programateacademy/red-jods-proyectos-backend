@@ -123,7 +123,7 @@ router.post('/',checkAuth, checkRoleAuth(['superAdmin']), validateCreateUser,  c
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/user'
+ *             $ref: '#/components/schemas/putUser'
  *     responses:
  *       '200':
  *         description: Respuesta exitosa
