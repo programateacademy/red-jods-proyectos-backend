@@ -65,9 +65,9 @@ $ npm run dev // ejecutar el proyecto localmente
 
 🧠 AUTORES ✒️
 --
-Ruth Yibeth Lizcano Prada- Product Owner Backend - ruthyi
-Laura Ximena Velasco Rocha 
-Nathalia Garcia Cruz
+* Ruth Yibeth Lizcano Prada- Product Owner Backend - ruthyi
+* Laura Ximena Velasco Rocha 
+* Nathalia Garcia Cruz
 
 🗝️ LICENCIA 📄
 --
