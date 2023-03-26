@@ -6,7 +6,7 @@ const swaggerUi = require('swagger-ui-express');
 const option = {
   definition: {
     openapi: "3.0.0",
-    info: { title: "Red Jobs Project", version: "1.0.0" },
+    info: { title: "Red Jods Project", version: "1.0.0" },
     servers: [{
       url: "https://red-jods-proyectos-backend.onrender.com/"
     }],
