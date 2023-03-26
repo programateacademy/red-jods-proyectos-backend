@@ -8,7 +8,7 @@ const tokenForgot = async (user) => { //TODO: Genera Token
         }, 
         process.env.JWT_SECRET_FORGOT, //TODO ENV
         {
-            expiresIn: "2m", //TODO tiempo de vida
+            expiresIn: "7m", //TODO tiempo de vida
         }
     );
 }

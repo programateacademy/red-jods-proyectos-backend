@@ -76,7 +76,7 @@ const forgotCtrl = async (req, res) => {
           <h1> BIENVENIDOS A RED JODS PROYECTOS </h1>
           <h2>Buen Día, ${user.name}</h2>
           <p> Su solicitud de recuperación de contraseña ha sido recibida.</p>
-          <p> Para restablecer su contraseña por favor ingrese el código en el campo correspondiente, tenga en cuenta que el código caducará en 5 minutos. </p>
+          <p> Para restablecer su contraseña por favor ingrese el código en el campo correspondiente, tenga en cuenta que el código caducará en 7 minutos. </p>
           <h3> Usuario: ${user.email} <br>
                Código: <p> ${tokenForget} </p>
           </h3>
