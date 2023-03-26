@@ -56,7 +56,7 @@ const validateCreateProject = [
             "Igualdad de genero",
             "Agua limpia y saneamiento",
             "Energía Asequible y no contaminante",
-            "Trabajo Decendente y crecimiento ecnómico",
+            "Trabajo Descendente y crecimiento económico",
             "Industria, innovación e infraestructura",
             "Reducción de las desigualdades",
             "ciudades y comunidades sostenibles",
@@ -69,7 +69,7 @@ const validateCreateProject = [
           ].includes(objeto.nameOds)
         ) {
           throw new Error(
-            "El campo nameods debe ser igual a 'Fin de la pobreza', 'Hambre cero', 'salud y bienestar', 'Educación de calidad', 'Igualdad de genero', 'Agua limpia y saneamiento', 'Energía Asequible y no contaminante', 'Trabajo Decendente y crecimiento ecnómico', 'Industria, innovación e infraestructura', 'Reducción de las desigualdades', 'ciudades y comunidades sostenibles', 'producción y consumo responsables', 'Acción por el clima', 'Vida submarina', 'Vida de ecosistemas terrestres', 'Paz, justicia e instituciones sólidas', 'Alianzas para lograr los objetivos'"
+            "El campo nameOds debe ser igual a 'Fin de la pobreza', 'Hambre cero', 'salud y bienestar', 'Educación de calidad', 'Igualdad de genero', 'Agua limpia y saneamiento', 'Energía Asequible y no contaminante', 'Trabajo Descendente y crecimiento económico', 'Industria, innovación e infraestructura', 'Reducción de las desigualdades', 'ciudades y comunidades sostenibles', 'producción y consumo responsables', 'Acción por el clima', 'Vida submarina', 'Vida de ecosistemas terrestres', 'Paz, justicia e instituciones sólidas', 'Alianzas para lograr los objetivos'"
           );
         }
       });

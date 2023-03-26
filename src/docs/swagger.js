@@ -8,7 +8,7 @@ const option = {
     openapi: "3.0.0",
     info: { title: "Red Jobs Project", version: "1.0.0" },
     servers: [{
-      url: "http://localhost:3000"
+      url: "https://red-jods-proyectos-backend.onrender.com/"
     }],
     components: {
       securitySchemes: {

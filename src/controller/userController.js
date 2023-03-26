@@ -49,7 +49,7 @@ const createUser = async (req, res) => {
       state,
       password: passwordHash,
     });
-    const Urlfrontend='https://';
+    const Urlfrontend='https://redjods.netlify.app/';
     const emailUser = process.env.USER;
     const mailOptions = {
       from: emailUser, // sender address

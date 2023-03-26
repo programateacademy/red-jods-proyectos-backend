@@ -4,6 +4,7 @@ const { transporter } = require('../../config/mailer')
 
 // Olvido la contraseña
 const forgotCtrl = async (req, res) => {
+
     try {
   
       const user = await userModel.findOne({ email: req.body.email })
@@ -18,7 +19,6 @@ const forgotCtrl = async (req, res) => {
       //TODO JWT 👉
       const tokenForget = await tokenForgot(user) //TODO: 2d2d2d2d2d2d2
       if (user.state == true) { //TODO Contraseña es correcta!
-        const Urlfrontend='https://';
         const emailUser = process.env.USER;
         const mailOptions = {
           from: emailUser, // sender address
@@ -76,7 +76,7 @@ const forgotCtrl = async (req, res) => {
           <h1> BIENVENIDOS A RED JODS PROYECTOS </h1>
           <h2>Buen Día, ${user.name}</h2>
           <p> Su solicitud de recuperación de contraseña ha sido recibida.</p>
-          <p> Para restablecer su contraseña por favor visite la siguiente URL ${Urlfrontend}, ingrese el código en el campo correspondiente, tenga en cuenta que el código caducará en 5 minutos. </p>
+          <p> Para restablecer su contraseña por favor ingrese el código en el campo correspondiente, tenga en cuenta que el código caducará en 5 minutos. </p>
           <h3> Usuario: ${user.email} <br>
                Código: <p> ${tokenForget} </p>
           </h3>
